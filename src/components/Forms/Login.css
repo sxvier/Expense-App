@@ -33,3 +33,13 @@
     padding: 0;
     margin: 0;
 }
+
+.linkBtn:hover {
+    color: blue;
+    cursor: pointer;
+}
+
+.linkBtn:focus,
+.submitBtn:focus{
+    outline: none;
+}

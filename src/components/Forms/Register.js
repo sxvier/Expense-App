@@ -19,12 +19,22 @@ class Register extends Component {
 
     register = e => {
         e.preventDefault();
-        
+        fire.auth().createUserWithEmailAndPassword(this.state.email, this.state.password).then((user) => {
+            var currentUser = fire.auth().currentUser;
+            currentUser.updateProfile({
+                displayName: this.state.displayName
+            })
+        }).catch((error) => {
+            this.setState({fireErrors: error.message})
+        });
     }
 
     render() {
+        let errorNotification = this.state.fireErrors ? 
+            (<div className="Error">{this.state.fireErrors}</div>) : null;
         return (
             <div>
+                {errorNotification}
                 <form>
                     <input type="text"
                         className="regField"
